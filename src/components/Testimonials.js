@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { X, Quote, Star } from 'lucide-react';
-
+import testimonialImage1 from '../assests/image3.png';
+import testimonialImage2 from '../assests/image.png';
+import testimonialImage3 from '../assests/image1.png';
 const Testimonials = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(null);
 
@@ -9,7 +11,7 @@ const Testimonials = () => {
       name: 'John Doe',
       title: 'CEO, Tech Innovators',
       message: 'Nexus AI has transformed how we approach data analysis. The accuracy and speed are unprecedented, giving us a competitive edge we never thought possible.',
-      image: '/api/placeholder/64/64',
+      image: testimonialImage1,
       rating: 5,
       company: 'Tech Innovators',
       impact: '3x Revenue Growth'
@@ -18,7 +20,7 @@ const Testimonials = () => {
       name: 'Jane Smith',
       title: 'Product Manager, Future Solutions',
       message: 'Implementation was seamless, and the results were immediate. Our team productivity has doubled, and the AI-driven insights have been game-changing.',
-      image: '/api/placeholder/64/64',
+      image: testimonialImage3,
       rating: 5,
       company: 'Future Solutions',
       impact: '200% Efficiency'
@@ -27,7 +29,7 @@ const Testimonials = () => {
       name: 'Sara Lee',
       title: 'Operations Lead, TechCorp',
       message: 'The predictive analytics capabilities have revolutionized our decision-making process. We are now able to anticipate market trends with remarkable accuracy.',
-      image: '/api/placeholder/64/64',
+      image: testimonialImage2,
       rating: 5,
       company: 'TechCorp',
       impact: '45% Cost Reduction'
