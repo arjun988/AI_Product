@@ -1,53 +1,97 @@
 import React from 'react';
-import { FaLightbulb, FaShieldAlt, FaRocket } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { Zap, Shield, Rocket, BarChart, Users, Clock } from 'lucide-react';
 
 const Benefits = () => {
-  React.useEffect(() => {
-    AOS.init();
-  }, []);
+  const benefits = [
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: 'Enhanced Productivity',
+      description: 'Automate repetitive tasks and streamline workflows to boost team efficiency by up to 300%',
+      metric: '3x Faster',
+      gradient: 'from-purple-500 to-blue-500'
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: 'Enterprise Security',
+      description: 'Bank-grade encryption and security protocols to keep your data protected at all times',
+      metric: '99.9% Uptime',
+      gradient: 'from-blue-500 to-purple-500'
+    },
+    {
+      icon: <Rocket className="w-8 h-8" />,
+      title: 'Scalable Solution',
+      description: 'Grow your AI capabilities seamlessly as your business expands and evolves',
+      metric: 'Unlimited Scale',
+      gradient: 'from-purple-500 to-blue-500'
+    },
+    {
+      icon: <BarChart className="w-8 h-8" />,
+      title: 'Data Analytics',
+      description: 'Transform raw data into actionable insights with advanced analytics capabilities',
+      metric: 'Real-time Data',
+      gradient: 'from-blue-500 to-purple-500'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: 'Team Collaboration',
+      description: 'Enable seamless collaboration across teams with integrated AI tools',
+      metric: '10x Efficiency',
+      gradient: 'from-purple-500 to-blue-500'
+    },
+    {
+      icon: <Clock className="w-8 h-8" />,
+      title: 'Time Savings',
+      description: 'Reduce manual work hours and focus on strategic initiatives that matter',
+      metric: '70% Time Saved',
+      gradient: 'from-blue-500 to-purple-500'
+    }
+  ];
 
   return (
-    <section
-      id="benefits"
-      className="py-16 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"
-    >
-      <h2 className="text-4xl sm:text-5xl font-semibold text-center text-white mb-12 animate__animated animate__fadeIn">
-        AI Product Benefits
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 sm:px-10">
-        {/* Benefit 1 */}
-        <div
-          className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg shadow-lg text-center transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
-          data-aos="fade-up"
-        >
-          <FaLightbulb className="text-5xl text-white mb-6" />
-          <h3 className="text-2xl font-semibold text-white">Innovation</h3>
-          <p className="text-gray-200 mt-2">Leverage cutting-edge technology to drive innovation in your business.</p>
+    <div className="relative bg-slate-900 py-24 px-6">
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-96 h-96 top-1/4 -right-48 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute w-96 h-96 bottom-1/4 -left-48 bg-blue-500/20 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative container mx-auto">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+              Why Choose Nexus AI
+            </span>
+          </h2>
+          <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+            Experience the competitive advantage of next-generation AI technology
+          </p>
         </div>
-        {/* Benefit 2 */}
-        <div
-          className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg shadow-lg text-center transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <FaShieldAlt className="text-5xl text-white mb-6" />
-          <h3 className="text-2xl font-semibold text-white">Security</h3>
-          <p className="text-gray-200 mt-2">Ensure data privacy and protection with robust security features.</p>
-        </div>
-        {/* Benefit 3 */}
-        <div
-          className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg shadow-lg text-center transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          <FaRocket className="text-5xl text-white mb-6" />
-          <h3 className="text-2xl font-semibold text-white">Scalability</h3>
-          <p className="text-gray-200 mt-2">Scale your operations effortlessly with AI-driven solutions.</p>
+
+        {/* Benefits grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {benefits.map((benefit, index) => (
+            <div
+              key={index}
+              className="group relative p-1 rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 transition-all duration-300"
+            >
+              <div className="h-full bg-slate-900 rounded-lg p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div className={`p-2 rounded-lg bg-gradient-to-r ${benefit.gradient} text-white`}>
+                    {benefit.icon}
+                  </div>
+                  <span className="text-sm font-semibold bg-slate-800 text-slate-300 px-3 py-1 rounded-full">
+                    {benefit.metric}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{benefit.title}</h3>
+                <p className="text-slate-300">{benefit.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

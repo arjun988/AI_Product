@@ -1,94 +1,149 @@
 import React, { useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-// Modal component
-const Modal = ({ isOpen, onClose, testimonial }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-gray-800 p-6 rounded-lg max-w-lg w-full">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-white text-3xl"
-        >
-          &times;
-        </button>
-        <h3 className="text-2xl font-semibold text-white mb-4">{testimonial.name}</h3>
-        <p className="text-gray-400 mb-4">{testimonial.title}</p>
-        <p className="text-gray-300">{testimonial.message}</p>
-      </div>
-    </div>
-  );
-};
+import { X, Quote, Star } from 'lucide-react';
 
 const Testimonials = () => {
-  React.useEffect(() => {
-    AOS.init();
-  }, []);
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(null);
 
   const testimonials = [
     {
       name: 'John Doe',
       title: 'CEO, Tech Innovators',
-      message: 'This AI product revolutionized our workflow. It\'s fast, efficient, and incredibly accurate!',
+      message: 'Nexus AI has transformed how we approach data analysis. The accuracy and speed are unprecedented, giving us a competitive edge we never thought possible.',
+      image: '/api/placeholder/64/64',
+      rating: 5,
+      company: 'Tech Innovators',
+      impact: '3x Revenue Growth'
     },
     {
       name: 'Jane Smith',
       title: 'Product Manager, Future Solutions',
-      message: 'An indispensable tool for our team. It made complex tasks a breeze!',
+      message: 'Implementation was seamless, and the results were immediate. Our team productivity has doubled, and the AI-driven insights have been game-changing.',
+      image: '/api/placeholder/64/64',
+      rating: 5,
+      company: 'Future Solutions',
+      impact: '200% Efficiency'
     },
     {
       name: 'Sara Lee',
       title: 'Operations Lead, TechCorp',
-      message: 'With this AI solution, our productivity soared. It\'s a must-have!',
-    },
+      message: 'The predictive analytics capabilities have revolutionized our decision-making process. We are now able to anticipate market trends with remarkable accuracy.',
+      image: '/api/placeholder/64/64',
+      rating: 5,
+      company: 'TechCorp',
+      impact: '45% Cost Reduction'
+    }
   ];
 
-  const openModal = (testimonial) => {
-    setCurrentTestimonial(testimonial);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setCurrentTestimonial(null);
-  };
-
   return (
-    <section
-      id="testimonials"
-      className="py-16 px-4 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"
-    >
-      <h2 className="text-4xl sm:text-5xl font-semibold text-center text-white mb-12 animate__animated animate__fadeIn">
-        Customer Testimonials
-      </h2>
-      <div className="flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0">
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg text-center transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer w-full sm:w-80 md:w-1/3 mx-auto"
-            data-aos="fade-up"
-            onClick={() => openModal(testimonial)}
-          >
-            <p className="text-gray-300 mb-4">{`"${testimonial.message}"`}</p>
-            <h3 className="text-2xl font-semibold text-white">{testimonial.name}</h3>
-            <p className="text-gray-400">{testimonial.title}</p>
-          </div>
-        ))}
+    <div className="relative bg-slate-900 py-24 px-6">
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-96 h-96 top-1/4 -left-48 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute w-96 h-96 bottom-1/4 -right-48 bg-blue-500/20 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Modal for expanded testimonial */}
-      <Modal
-        isOpen={modalOpen}
-        onClose={closeModal}
-        testimonial={currentTestimonial}
-      />
-    </section>
+      <div className="relative container mx-auto">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+              Client Success Stories
+            </span>
+          </h2>
+          <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+            See how leading companies are transforming their operations with Nexus AI
+          </p>
+        </div>
+
+        {/* Testimonials grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              onClick={() => setActiveTestimonial(testimonial)}
+              className="group cursor-pointer"
+            >
+              <div className="relative p-1 rounded-xl bg-gradient-to-r from-purple-500/50 to-blue-500/50 hover:from-purple-500 hover:to-blue-500 transition-all duration-300">
+                <div className="relative h-full bg-slate-900 rounded-lg p-6">
+                  <div className="absolute -top-3 -right-3 p-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
+                    <Quote className="w-4 h-4 text-white" />
+                  </div>
+                  
+                  <div className="flex items-center gap-4 mb-4">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full"
+                    />
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">{testimonial.name}</h3>
+                      <p className="text-sm text-slate-400">{testimonial.title}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex mb-3">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-slate-300 mb-4">{testimonial.message}</p>
+                  
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-purple-400">{testimonial.company}</span>
+                    <span className="bg-slate-800 text-slate-300 px-3 py-1 rounded-full">
+                      {testimonial.impact}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Modal */}
+        {activeTestimonial && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 max-w-2xl w-full shadow-2xl">
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex items-center gap-4">
+                  <img
+                    src={activeTestimonial.image}
+                    alt={activeTestimonial.name}
+                    className="w-16 h-16 rounded-full"
+                  />
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">{activeTestimonial.name}</h3>
+                    <p className="text-slate-400">{activeTestimonial.title}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setActiveTestimonial(null)}
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <blockquote className="text-slate-300 text-lg leading-relaxed mb-6">
+                "{activeTestimonial.message}"
+              </blockquote>
+              
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2">
+                  {[...Array(activeTestimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full">
+                  {activeTestimonial.impact}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

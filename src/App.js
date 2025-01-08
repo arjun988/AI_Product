@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import HeroSection from './components/HeroSection';
 import Features from './components/Features';
 import Benefits from './components/Benefits';
@@ -8,62 +7,31 @@ import Pricing from './components/Pricing';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
-function App() {
+const App = () => {
   return (
-    <div className="font-sans bg-gray-900 text-white">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-8">
-        <HeroSection />
+    <div className="min-h-screen bg-slate-900 text-white">
+      {/* Navigation placeholder - you might want to add a proper navbar component */}
+      <div className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800">
+        <div className="container mx-auto px-6 py-4">
+          {/* Add navigation content here */}
+        </div>
       </div>
 
-      {/* Features Section */}
-      <section className="py-20 bg-gray-800">
-        <div className="container mx-auto px-4">
-          {/* <h2 className="text-3xl font-semibold text-center text-white mb-8">Features</h2> */}
-          <div className="flex flex-wrap justify-center gap-12">
-            <Features />
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-t from-black via-transparent to-transparent">
-        <div className="container mx-auto px-4">
-          {/* <h2 className="text-3xl font-semibold text-center text-white mb-8">Benefits</h2> */}
-          <div className="flex flex-wrap justify-center gap-12">
-            <Benefits />
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-800">
-        <div className="container mx-auto px-4">
-          {/* <h2 className="text-3xl font-semibold text-center text-white mb-8">Testimonials</h2> */}
-          <div className="flex flex-wrap justify-center gap-12">
-            <Testimonials />
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <Pricing />
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="bg-gray-800 py-20">
-        <div className="container mx-auto px-4">
-          <ContactForm />
-        </div>
-      </section>
+      {/* Main content sections */}
+      <main>
+        {/* Each section is self-contained with its own padding and background */}
+        <HeroSection />
+        <Features />
+        <Benefits />
+        <Testimonials />
+        <Pricing />
+        <ContactForm />
+      </main>
 
       {/* Footer */}
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
